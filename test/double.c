@@ -51,7 +51,7 @@ START_TEST(vect_2) {
 END_TEST
 
 START_TEST(vect_3) {
-  vect_int *d = vect_init_int(15);
+  vect_double *d = vect_init_double(15);
 
   vect_pop_double(d);
 
