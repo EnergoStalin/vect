@@ -33,7 +33,7 @@ START_TEST(vect_2) {
   ck_assert_double_eq(vect_at_double(d, 0), 8);
   ck_assert_double_eq(vect_at_double(d, 1), 5);
   vect_ins_double(d, 0, 8);
-  ck_assert_double_eq(vect_at_double(d, 2), 5);
+  ck_assert_double_eq(*vect_ptr_double(d, 2), 5);
 
   size_t prev = d->capacity;
   vect_resize((vect *)d);

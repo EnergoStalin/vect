@@ -33,7 +33,7 @@ START_TEST(vect_2) {
   ck_assert_int_eq(vect_at_char(d, 0), 8);
   ck_assert_int_eq(vect_at_char(d, 1), 5);
   vect_ins_char(d, 0, 8);
-  ck_assert_int_eq(vect_at_char(d, 2), 5);
+  ck_assert_int_eq(*vect_ptr_char(d, 2), 5);
 
   size_t prev = d->capacity;
   vect_resize((vect *)d);
