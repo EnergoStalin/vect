@@ -1,12 +1,9 @@
 set_project("vect")
 
-includes("rules.lua", "test/xmake.lua")
+includes("compiler.lua")
+set_compiler_flags()
 
--- Compiler setup
-add_rules("mode.release", "mode.debug")
-add_cflags("-Wall", "-Werror", "-Wextra")
-set_languages("c11")
-add_toolchains("gcc")
+includes("rules.lua", "test/xmake.lua")
 
 target("vect")
   set_default()
