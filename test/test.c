@@ -56,6 +56,39 @@ START_TEST(vect_3) {
 }
 END_TEST
 
+START_TEST(vect_4) {
+  vect *d = vect_init(sizeof(double), 1);
+
+  *(double *)vect_ins(d, 5) = 6;
+
+  vect_free(d);
+}
+END_TEST
+
+START_TEST(vect_5) {
+  vect *d = vect_init(sizeof(double), 1);
+
+  *(double *)vect_ins(d, 0) = 6;
+  *(double *)vect_ins(d, 0) = 6;
+  *(double *)vect_ins(d, 0) = 6;
+  *(double *)vect_ins(d, 0) = 6;
+
+  vect_free(d);
+}
+END_TEST
+
+START_TEST(vect_6) {
+  vect *d = vect_init(sizeof(double), 1);
+
+  *(double *)vect_push(d) = 6;
+  *(double *)vect_push(d) = 6;
+  *(double *)vect_push(d) = 6;
+  *(double *)vect_push(d) = 6;
+
+  vect_free(d);
+}
+END_TEST
+
 Suite *vect_suite() {
   Suite *s = suite_create("vect");
 
@@ -63,6 +96,9 @@ Suite *vect_suite() {
   tcase_add_test(tc, vect_1);
   tcase_add_test(tc, vect_2);
   tcase_add_exit_test(tc, vect_3, 1);
+  tcase_add_exit_test(tc, vect_4, 1);
+  tcase_add_test(tc, vect_5);
+  tcase_add_test(tc, vect_6);
   suite_add_tcase(s, tc);
 
   return s;
