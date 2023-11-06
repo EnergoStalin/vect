@@ -17,6 +17,7 @@ size_t vect_chk_bounds(vect *v, size_t pos);
 void *vect_at(vect *v, size_t pos);
 void *vect_push(vect *v);
 void *vect_pop(vect *v);
+void *vect_top(vect *v);
 void vect_rem(vect *v, size_t pos);
 void *vect_ins(vect *v, size_t pos);
 size_t vect_size(vect *v);

@@ -34,6 +34,7 @@ START_TEST(vect_2) {
   ck_assert_double_eq(*(double *)vect_at(d, 2), 5);
   *(double *)vect_ins(d, 0) = 8;
   ck_assert_int_eq(*(double *)vect_at(d, 3), 5);
+  ck_assert_double_eq(*(double *)vect_top(d), 5);
 
   size_t prev = vect_capacity(d);
   vect_resize(d);
