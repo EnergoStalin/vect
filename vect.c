@@ -12,6 +12,14 @@ void vect_err(const char *error) {
   exit(1);
 }
 
+void vect_resize(vect *v) {
+  v->capacity *= 2; /* double capacity */
+  v->data = realloc(v->data, v->data_size * v->capacity);
+  if (v->data == NULL) vect_err("vect_resize: resize failed.");
+}
+
+size_t vect_chk_bounds(vect *v, size_t pos) { return (pos <= v->size); }
+
 vect *vect_init(size_t data_size, size_t capacity) {
   vect *v = (vect *)malloc(sizeof(vect));
   if (v == NULL) vect_err("vect_init: allocation of vect failed.");
@@ -28,14 +36,6 @@ void vect_free(void *v) {
   free(((vect *)v)->data);
   free(((vect *)v));
 }
-
-void vect_resize(vect *v) {
-  v->capacity *= 2; /* double capacity */
-  v->data = realloc(v->data, v->data_size * v->capacity);
-  if (v->data == NULL) vect_err("vect_resize: resize failed.");
-}
-
-size_t vect_chk_bounds(vect *v, size_t pos) { return (pos <= v->size); }
 
 void *vect_at(vect *v, size_t pos) {
   if (!vect_chk_bounds((vect *)v, pos)) vect_err("vect_at: out of bounds.");
