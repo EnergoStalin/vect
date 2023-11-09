@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define VECT_CAPACITY 256
-
 typedef struct vect vect;
 
 vect *vect_init(size_t data_size, size_t capacity);

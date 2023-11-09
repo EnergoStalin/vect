@@ -1,5 +1,7 @@
 #include "vect.h"
 
+#define VECT_CAPACITY 256
+
 struct vect {
   size_t size;
   size_t capacity;
