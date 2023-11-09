@@ -52,7 +52,9 @@ void *vect_pop(vect *v) {
   return ((char *)v->data + (v->size-- * v->data_size));
 }
 
-void *vect_top(vect *v) { return ((char *)v->data + (v->size * v->data_size)); }
+void *vect_back(vect *v) {
+  return ((char *)v->data + (v->size * v->data_size));
+}
 
 void vect_rem(vect *v, size_t pos) {
   if (!vect_chk_bounds((vect *)v, pos)) vect_err("vect_rem: out of bounds.");
