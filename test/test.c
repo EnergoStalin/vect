@@ -111,7 +111,7 @@ int main() {
   SRunner *sr = srunner_create(vect_suite());
 
   // Should fork for correct fail checking
-  srunner_set_fork_status(sr, CK_NOFORK);
+  // srunner_set_fork_status(sr, CK_NOFORK);
   srunner_run_all(sr, CK_NORMAL);
 
   int failed = srunner_ntests_failed(sr);
