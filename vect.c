@@ -84,3 +84,4 @@ void *vect_ins(vect *v, size_t pos) {
 size_t vect_size(vect *v) { return v->size; }
 size_t vect_capacity(vect *v) { return v->capacity; }
 size_t vect_data_size(vect *v) { return v->data_size; }
+void *vect_data(vect *v) { return v->data; }

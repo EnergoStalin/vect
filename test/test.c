@@ -9,6 +9,7 @@ START_TEST(vect_1) {
   ck_assert_int_eq(15, vect_capacity(d));
   ck_assert_int_eq(sizeof(double), vect_data_size(d));
   ck_assert_int_eq(vect_size(d), 0);
+  ck_assert_ptr_ne(vect_data(d), 0);
 
   vect_free(d);
 }

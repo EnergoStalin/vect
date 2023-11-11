@@ -18,6 +18,7 @@ void *vect_ins(vect *v, size_t pos);
 size_t vect_size(vect *v);
 size_t vect_capacity(vect *v);
 size_t vect_data_size(vect *v);
+void *vect_data(vect *v);
 
 #define VECT_PUSH(V, VALUE) *(__typeof__(VALUE) *)vect_push(V) = VALUE
 #define VECT_POP(V, VALUE) *(__typeof__(VALUE) *)vect_pop(V) = VALUE
