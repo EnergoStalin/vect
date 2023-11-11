@@ -17,6 +17,9 @@ END_TEST
 
 START_TEST(vect_2) {
   vect *d = vect_init(sizeof(double), 300);
+  double *data = vect_data(d);
+
+  ck_assert_ptr_ne(data, 0);
 
   ck_assert_int_eq(300, vect_capacity(d));
   ck_assert_int_eq(sizeof(double), vect_data_size(d));
@@ -32,16 +35,16 @@ START_TEST(vect_2) {
   VECT_INS(d, 8.0, 0);
   ck_assert_uint_eq(vect_size(d), 2);
   ck_assert_double_eq(*(double *)vect_at(d, 0), 8);
-  ck_assert_double_eq(*(double *)vect_at(d, 1), 0);
-  ck_assert_double_eq(*(double *)vect_at(d, 2), 5);
+  ck_assert_double_eq(*(double *)vect_at(d, 1), 5);
 
-  VECT_INS(d, 8.0, 0);
-  ck_assert_int_eq(*(double *)vect_at(d, 3), 5);
+  VECT_INS(d, 8.0, 1);
+  ck_assert_int_eq(*(double *)vect_at(d, 1), 8);
   ck_assert_double_eq(*(double *)vect_back(d), 5);
 
   size_t prev = vect_size(d);
-  vect_rem(d, 2);
+  vect_rem(d, prev);
   ck_assert_uint_eq(vect_size(d), prev - 1);
+  ck_assert_double_eq(*(double *)vect_back(d), 8);
 
   vect_free(d);
 }
@@ -108,7 +111,7 @@ int main() {
   SRunner *sr = srunner_create(vect_suite());
 
   // Should fork for correct fail checking
-  // srunner_set_fork_status(sr, CK_NOFORK);
+  srunner_set_fork_status(sr, CK_NOFORK);
   srunner_run_all(sr, CK_NORMAL);
 
   int failed = srunner_ntests_failed(sr);

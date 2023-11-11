@@ -46,23 +46,23 @@ void *vect_at(vect *v, size_t pos) {
 
 void *vect_push(vect *v) {
   if (v->size == v->capacity) vect_resize(v);
-  return ((char *)v->data + (++v->size * v->data_size));
+  return ((char *)v->data + (v->size++ * v->data_size));
 }
 
 void *vect_pop(vect *v) {
   if (v->size == 0) vect_err("vect_pop: underflow.");
-  return ((char *)v->data + (v->size-- * v->data_size));
+  return ((char *)v->data + (--v->size * v->data_size));
 }
 
 void *vect_back(vect *v) {
-  return ((char *)v->data + (v->size * v->data_size));
+  return ((char *)v->data + ((v->size - 1) * v->data_size));
 }
 
 void vect_rem(vect *v, size_t pos) {
   if (!vect_chk_bounds((vect *)v, pos)) vect_err("vect_rem: out of bounds.");
-  char *dest = (char *)v->data + (v->data_size * pos);
+  char *dest = (char *)v->data + (v->data_size * (pos - 1));
   char *src = dest + v->data_size;
-  size_t num_bytes = v->data_size * (v->size - pos - 1);
+  size_t num_bytes = v->data_size * (v->size - pos);
   memmove(dest, src, num_bytes);
   v->size--;
 }
@@ -70,7 +70,7 @@ void vect_rem(vect *v, size_t pos) {
 void *vect_ins(vect *v, size_t pos) {
   if (!vect_chk_bounds((vect *)v, pos))
     vect_err("vect_ins: out of bounds.");
-  else if (++v->size == v->capacity)
+  else if (v->size++ == v->capacity)
     vect_resize(v);
 
   char *src = (char *)v->data + (v->data_size * pos);
