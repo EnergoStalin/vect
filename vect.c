@@ -70,13 +70,15 @@ void vect_rem(vect *v, size_t pos) {
 void *vect_ins(vect *v, size_t pos) {
   if (!vect_chk_bounds((vect *)v, pos))
     vect_err("vect_ins: out of bounds.");
-  else if (v->size++ == v->capacity)
+  else if (v->size == v->capacity)
     vect_resize(v);
 
   char *src = (char *)v->data + (v->data_size * pos);
   char *dest = src + v->data_size;
   size_t num_bytes = v->data_size * (v->size - pos);
   memmove(dest, src, num_bytes);
+
+  v->size++;
 
   return vect_at(v, pos);
 }
