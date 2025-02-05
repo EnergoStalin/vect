@@ -1,9 +1,7 @@
 #ifndef SRC_VECT_VECT_H_
 #define SRC_VECT_VECT_H_
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <stddef.h>
 
 typedef struct vect vect;
 

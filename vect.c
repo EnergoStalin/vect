@@ -1,5 +1,9 @@
 #include "vect.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #define VECT_CAPACITY 256
 
 struct vect {
